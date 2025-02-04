@@ -1,0 +1,159 @@
+*設定 Git 儲存庫
+初始化本地儲存庫（如果您還沒有的話）：
+打開終端（或命令提示符），導航到您的本地專案目錄，然後執行：
+git init
+添加遠端儲存庫：
+將本地儲存庫與遠端儲存庫連接。通常在創建本地儲存庫後立即進行的。
+
+git remote add origin (Github > CODE > HTTPS)
+
+拉取遠端儲存庫的內容（如果遠端儲存庫已經存在且有內容）
+git pull origin main
+or 
+git pull origin chris
+
+*進行日常開發工作
+
+拉取最新更改：
+每次開始工作前，先從遠端儲存庫拉取最新的更改，確保您的本地儲存庫是最新的。
+git pull origin your_branch_name
+
+添加和提交更改：
+當您更改了檔案後，您需要添加和提交這些更改。
+
+git push origin your_branch_name
+
+解決合併衝突
+
+如果在推送時遇到錯誤，可能是因為您的本地儲存庫與遠端儲存庫有衝突。通常發生在其他人已經推送了他們的更改，而本地的更改與這些更改不同步時。需要先拉取並解決衝突，然後再次推送。
+
+git pull
+
+git commit -m "解決衝突"
+
+使用 git push -u origin master（或 main，取決於你的主分支名稱）將本機更改推送到GitHub。
+在VSCode中檢查同步狀態：
+
+確保你已經安裝了VSCode的Git擴展。
+在VSCode中打開你的資料夾。
+在左側的側邊欄中，你可以找到源控制圖標（一般是一個分叉的圖標），點擊它可以看到當前的更改。
+VSCode會顯示出所有未提交的更改。你可以在這裡提交更改並推送到GitHub。
+定期同步更新：
+
+每次在本機進行更改後，重複步驟3和4，將本機的更改推送到GitHub。
+如果有其他人對GitHub倉庫進行了更改，可以使用 git pull 拉取最新的更改到本機。
+通過這些步驟，你可以確保本機資料夾和GitHub倉庫保持同步。在VSCode中，你可以輕鬆地跟踪和提交更改，並確保所有更新都被同步到GitHub。
+
+
+*校正遠端倉庫 URL
+首先，我們需要確保您的本地倉庫設定了正確的遠端倉庫 URL。您可以使用以下命令查看當前設定的遠端倉庫 URL：
+
+git remote -v
+
+git remote set-url origin https://github.com/chrisj890926/textmining.git
+
+git pull origin chris
+
+git push origin your_branch_name
+
+
+將檔案拖移至遠端環境的檔案總管並放置於 Git 儲存庫目錄下時，這只是將檔案放到該位置。
+為了將這些檔案的更改同步到 GitHub
+
+1. git add .
+首先，使用 git add 命令將新添加或修改過的檔案加入 Git 的暫存區。 Git 不會自動追蹤每一個檔案的變化，除非確定哪些檔案是想要追蹤的。
+
+2. git commit
+
+使用 git commit 命令來提交這些暫存的更改。每一次提交都會記錄檔案的一個快照，並附上一條您提供的訊息，用於描述這次提交包含的更改。
+
+3. git push
+
+最後，使用 git push 命令將這些提交的更改推送到遠端的 GitHub 儲存庫。
+
+*刪除檔案
+
+檔案總管直接刪除
+git status 檢查刪了哪些
+
+git add -A
+
+git commit -m 
+
+git push
+
+若沒有更新無法換分支
+
+git checkout -b main
+git add .
+git commit -m " "
+
+*想在隊友的分支工作
+1. 克隆隊友的儲存庫
+如果你還沒有克隆隊友的儲存庫到你的本地系統，首先克隆它：
+
+git clone HTTPS
+cd 隊友branch_name
+
+這將會創建一個名為 antitrust 的目錄，並包含儲存庫的所有數據。
+
+2. 切換到 CHRIS 分支
+確認 CHRIS 分支是否已存在於儲存庫中，如果存在，你可以直接切換到該分支：
+
+git checkout 自己branch_name
+如果分支不存在，你需要先創建它：
+git checkout -b 自己branch_name
+
+3. 進行你的更改並提交
+在分支上進行你的開發工作，完成後使用 git add 和 git commit 命令提交你的更改：
+
+git add .
+git commit -m "提交訊息"
+
+4. 將更改推送到 branch_name 分支
+將你的更改推送到隊友儲存庫的 CHRIS 分支：
+
+git push origin branch_name
+
+*將目前資料夾覆蓋
+
+1.
+git remote remove origin
+
+git clone ...
+cd ..
+git checkout ..r
+
+確認遠端倉庫 git remove -v
+2.
+git rm-r *
+git add .
+git commit -m
+
+撤銷刪除 git reset --soft HEAD~1
+git push origin branch_name --force
+
+git pull origin branch_name
+出現 " fatal: Not possible to fast-forward, aborting. " 
+輸入這段 git merge --no-ff origin/分支名稱
+出現" fatal: refusing to merge unrelated histories "
+輸入這段 git merge origin/CHRIS --allow-unrelated-histories 
+
+>> push
+
+*更改branch 名稱
+git branch -d chris
+git branch -m CHRIS chris
+
+git branch 若沒有 >> git checkout chris
+git push origin chris
+git commit --allow-empty -m  " Initial commit on chris branch "
+git push origin chris
+git push origin --delete CHRIS
+
+*拉取隊友資料
+git checkout main
+git pull origin main
+git merge origin/main
+(refusing) >>git merge origin/main --allow-unrelated histories
+git push origin main

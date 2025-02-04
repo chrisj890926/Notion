@@ -1,0 +1,1 @@
+rm -rf my_folder 刪除資料夾

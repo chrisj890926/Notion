@@ -1,0 +1,11 @@
+方案 1: 加入 .gitignore 排除模型檔案
+在專案根目錄中建立或編輯 .gitignore 文件：
+
+Get-ChildItem -Path . -Recurse | Where-Object { $_.Length -gt 50MB }
+
+bash
+複製程式碼
+# 排除模型檔案
+A4/checkpoints/*.pth
+
+git config --global core.autocrlf false
